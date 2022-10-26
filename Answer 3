@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // Write C code here
+   
+    struct node{
+        int data;
+        struct node*left;
+        struct node*right;
+    };
+    struct node*create(int val){
+        struct node*p=(struct node*)malloc(sizeof(struct node));
+        p->data=val;
+        p->left=NULL;
+        p->right=NULL;
+        return(p);
+    };
+    struct node * left(int val,struct node * root){
+        struct node*p=create(val);
+        root->left=p;
+        
+    };
+    struct node * right(int val,struct node*root){
+        struct node*p=create(val);
+        root->right=p;
+    };
+    
+    int FindSize(struct node * root)
+    {
+        int cnt;
+        if(root==NULL)
+         return 0;
+         
+        FindSize(root->left);
+        FindSize(root->right);
+        cnt+=1;
+        
+        return cnt;
+     }
+    
+    struct node*root=create(1);
+    left(2,root);
+    right(0,root);
+    left(3,root->left);
+    right(4,root->left);
+    printf("Size of the Binary Tree is %d\n", FindSize(root));
+    
+    return 0;
+}
