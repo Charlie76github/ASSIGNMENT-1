@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // Write C code here
+   
+    struct node{
+        int data;
+        struct node*left;
+        struct node*right;
+    };
+    struct node*create(int val){
+        struct node*p=(struct node*)malloc(sizeof(struct node));
+        p->data=val;
+        p->left=NULL;
+        p->right=NULL;
+        return(p);
+    };
+    struct node * left(int val,struct node*root){
+        struct node*p=create(val);
+        root->left=p;
+        
+    };
+    struct node * right(int val,struct node*root){
+        struct node*p=create(val);
+        root->right=p;
+    };
+    
+    int FindMax(struct node * root)
+    {
+        if(root==NULL)
+          return 0; 
+        int max=root->data;
+        int lmax=FindMax(root->left);
+        int rmax=FindMax(root->right);
+        
+        if(lmax>max)
+          max=lmax;
+        if(rmax>max)
+          max=rmax;
+          
+        return max;
+    }
+    struct node*root=create(1);
+    left(2,root);
+    right(0,root);
+    left(3,root->left);
+    right(4,root->left);
+    printf("Maximum element is %d \n", FindMax(root));
+    
+  return 0;
+}
