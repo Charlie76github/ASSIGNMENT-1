@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    // Write C code here
+    // Online C compiler to run C program online
+    
+    struct node
+    {
+        int data;
+        struct node * left;
+        struct node * right;
+    };
+     
+     struct node * create(int val)
+     {
+         struct node * p=(struct node*)malloc(sizeof(struct node));
+         p->left=NULL;
+         p->right=NULL;
+         p->data=val;
+         return (p);
+     };
+     
+     struct node * LC(int val, struct node * root)
+     {
+         struct node * p=create(val);
+         root->left=p;
+     };
+     
+      struct node * RC(int val, struct node * root)
+     {
+         struct node * p=create(val);
+         root->right=p;
+     };
+     
+     struct node * Inorder(struct node * root)
+     {
+         printf("%d->", root->data);
+         Inorder(root->left);
+         Inorder(root->right);
+     };
+     
+     struct node * inOrderPredecessor(struct node * root) 
+     {
+     //Rightmost child of the left Subtree
+     
+     root=root->left;
+       while(root->right !=NULL) {
+        root=root->right;
+       };
+     
+        return (root);
+     };
+     
+     struct node * DeleteNode(struct node * root, int val)
+     {
+         struct node * iPre;
+         if(root==NULL)
+          return NULL;
+          
+         if(root->left==NULL && root->right==NULL)// Leaf Node.
+          free(root);
+          return NULL;
+         if(val < root->data)
+          root->left = DeleteNode(root->left, val);
+         else if(val > root->data)
+          root->right = DeleteNode(root->right, val);
+         else {
+             iPre = inOrderPredecessor(root);
+             root->data = iPre->data;
+             root->left = DeleteNode(root->left, iPre->data);
+         }
+         return (root, val);
+     };
+     
+     struct node * root=create(5);
+     LC(3,root);
+     RC(6,root);
+     LC(1,root->left->left);
+     RC(4,root->left->right);
+     
+     Inorder(root);
+     DeleteNode(root,3);
+     printf("\n");
+     Inorder(root);
+     
+     
+
+    return 0;
+};
