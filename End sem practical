@@ -1,0 +1,63 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+  struct node
+  { 
+      int data;
+      struct node * next;
+  };
+  if (head== null)
+  return null;
+  node *odd= head;
+  node *even= head ->next;
+   
+   node *even first= even;
+   while (1)
+   {
+       if(!odd|| !even|| !(even->next))
+       {
+           odd-> next=even first;
+           break;
+       }
+       odd ->next=even->next;
+       odd=even->next;
+       
+       if (odd->next==null))
+       
+       {
+           even->next=null;
+           odd ->next=evenfirst;
+           break;
+       }
+       even ->next=odd->next
+       even=odd->next;
+       
+       }
+       return head;
+}
+     { 
+         while ( node!=null)
+         { 
+             count<<node ->data<<"->";
+             node=node->next;
+         }
+         count<<"null"<<endl;
+     }
+     int main(void)
+     {
+         node*head=new node(1)
+         head->next-new node(2);
+         head->next->next=new node(3);
+         head->next->next->next=new node(4);
+         head->next->next->next->next=new node(5);
+         
+         count<<"given linked list\n";
+         print list(head);
+         
+         head=rearrange evenodd(head);
+         cout<<"\nmodified linked list\n";
+         printlist(head0;
+         
+         return 0;
+     }
